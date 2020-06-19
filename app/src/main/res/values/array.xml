@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="search_range">
+        <item>帖子</item>
+        <item>用户</item>
+    </string-array>
+
+    <string-array name="search_blog_identity">
+        <item>老师</item>
+        <item>学生</item>
+        <item>不限</item>
+    </string-array>
+
+    <string-array name="search_blog_time">
+        <item>一个月内</item>
+        <item>三个月内</item>
+        <item>六个月内</item>
+        <item>一年内</item>
+        <item>不限</item>
+    </string-array>
+
+
+</resources>

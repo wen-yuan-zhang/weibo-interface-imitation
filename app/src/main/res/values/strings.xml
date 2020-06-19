@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Myapp</string>
+
+<!--  底栏  -->
+    <string name="title_home">主页</string>
+    <string name="title_discover">发现</string>
+    <string name="title_message">消息</string>
+    <string name="title_personal">个人</string>
+
+<!-- 登录/注册界面 -->
+    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_register">Register</string>
+    <string name="prompt_name">不超过10个字符</string>
+    <string name="prompt_email">请填写您的教育邮箱</string>
+    <string name="prompt_password">不超过32个字符</string>
+    <string name="prompt_captcha">验证码</string>
+    <string name="button_sendCaptcha">发送验证码</string>
+    <string name="action_sign_in">登录</string>
+    <string name="action_register">注册</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="server_addr">""</string>
+    <string name="personal_option_edit">编辑资料</string>
+    <string name="personal_option_setting">设置</string>
+
+</resources>

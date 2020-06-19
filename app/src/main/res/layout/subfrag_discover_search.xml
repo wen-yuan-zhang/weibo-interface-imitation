@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--广场子界面，用来展示搜索筛选条件-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/divider">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:text="条件筛选"
+            android:textSize="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="4dp"
+            android:text="筛选你感兴趣的帖子和用户"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView1"
+            app:layout_constraintStart_toEndOf="@+id/textView1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/search_constraintLayout"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="12dp"
+            android:text="搜索范围"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/discover_search_rangeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="2dp"
+            android:entries="@array/search_range"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/discover_search_layout_blog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@color/white"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        tools:layout_editor_absoluteX="1dp">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="12dp"
+            android:text="发帖者身份"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/discover_search_blog_identity"
+            android:layout_width="150dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="2dp"
+            android:entries="@array/search_blog_identity"
+            app:layout_constraintStart_toEndOf="@+id/textView10"
+            app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+        <Spinner
+            android:id="@+id/discover_search_blog_time"
+            android:layout_width="150dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="2dp"
+            android:entries="@array/search_blog_time"
+            app:layout_constraintStart_toStartOf="@+id/discover_search_blog_school"
+            app:layout_constraintTop_toTopOf="@+id/textView12" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:text="发帖者学校"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/textView10"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:text="发帖时间"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <EditText
+            android:id="@+id/discover_search_blog_school"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:background="#0000"
+            android:ems="10"
+            android:hint="清华大学"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/discover_search_blog_identity"
+            app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/discover_search_layout_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="12dp"
+            android:text="身份"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/discover_search_user_identity"
+            android:layout_width="150dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="2dp"
+            android:entries="@array/search_blog_identity"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:text="性别"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <Spinner
+            android:id="@+id/discover_search_user_sex"
+            android:layout_width="150dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="2dp"
+            android:entries="@array/search_blog_time"
+            app:layout_constraintStart_toStartOf="@+id/discover_search_user_identity"
+            app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:text="学校"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <EditText
+            android:id="@+id/discover_search_user_school"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:background="#0000"
+            android:ems="10"
+            android:hint="清华大学"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/discover_search_user_sex"
+            app:layout_constraintTop_toTopOf="@+id/textView15" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:text="院系"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/textView15"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+        <EditText
+            android:id="@+id/discover_search_user_department"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:background="#0000"
+            android:ems="10"
+            android:hint="软件学院"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/discover_search_user_school"
+            app:layout_constraintTop_toTopOf="@+id/textView16" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:text="研究方向"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView16"
+            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+        <EditText
+            android:id="@+id/discover_search_user_interest"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:background="#0000"
+            android:ems="10"
+            android:hint="图像识别"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/discover_search_user_department"
+            app:layout_constraintTop_toTopOf="@+id/textView17" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="white">#FFFFFF</color>
+<!--  工具栏背景色  -->
+    <color name="toolbarBg">#DCDCDC</color>
+<!--  分割线  -->
+    <color name="divider">#D3D3D3</color>
+<!--  主题色  -->
+    <color name="theme_orange">#FF8C00</color>
+<!--  强调色  -->
+    <color name="text_emphasize">#6495ED</color>
+<!--  textView的默认颜色  -->
+    <color name="textView_default">#888888</color>
+
+    <color name="color_f6">#f6f6f6</color>
+</resources>

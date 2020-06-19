@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.DeliverActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/deliver_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/toolbarBg"
+        custom:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/deliver_btn_return"
+            android:layout_width="64dp"
+            android:layout_height="33dp"
+            android:textSize="18sp"
+            android:text="取消"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_gravity="left"
+            android:layout_marginRight="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="发布帖子"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="16dp" />
+
+
+        <TextView
+            android:id="@+id/deliver_btn_publish"
+            android:layout_width="64dp"
+            android:layout_height="33dp"
+            android:text="发表"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:background="@color/theme_orange"
+            android:textColor="@color/white"
+
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/deliver_editText_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@color/white"
+        android:gravity="top"
+        android:hint="编辑内容"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toBottomOf="@+id/deliver_toolbar" />
+
+<!--    <GridView-->
+<!--        android:id="@+id/deliver_gridView_images"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginLeft="24dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:layout_marginRight="24dp"-->
+<!--        android:numColumns="3"-->
+<!--        android:horizontalSpacing="10dp"-->
+<!--        android:verticalSpacing="10dp"-->
+<!--        custom:layout_constraintEnd_toEndOf="parent"-->
+<!--        custom:layout_constraintStart_toStartOf="parent"-->
+<!--        custom:layout_constraintTop_toBottomOf="@+id/deliver_editText_content" />-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/deliver_recycler_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toBottomOf="@+id/deliver_editText_content"
+        android:overScrollMode="never" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
