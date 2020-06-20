@@ -128,7 +128,7 @@
                 android:id="@+id/personal_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:background="@color/toolbarBg"
+                android:background="@drawable/appbar_bg"
                 android:minHeight="56dp"
                 app:layout_collapseMode="pin"
                 app:title="">

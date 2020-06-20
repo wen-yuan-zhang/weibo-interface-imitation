@@ -6,6 +6,8 @@
     <color name="white">#FFFFFF</color>
 <!--  工具栏背景色  -->
     <color name="toolbarBg">#DCDCDC</color>
+<!--    <color name="toolbarBg">#F5F5F5</color>-->
+
 <!--  分割线  -->
     <color name="divider">#D3D3D3</color>
 <!--  主题色  -->
@@ -16,4 +18,14 @@
     <color name="textView_default">#888888</color>
 
     <color name="color_f6">#f6f6f6</color>
+
+<!--  聊天界面  -->
+    <color name="dark_gray_bg">#F5F5F5</color>
+    <color name="black">#ff000000</color>
+    <color name="blue">#3072F3</color>
+    <color name="jmui_jpush_blue">#2DD0CF</color>
+    <color name="menu_item_back_pres_color">#2DD0CF</color>
+    <color name="btn_send_textcolor">@color/white</color>
+    <color name="chat_text_color">#0B1816</color>
+
 </resources>

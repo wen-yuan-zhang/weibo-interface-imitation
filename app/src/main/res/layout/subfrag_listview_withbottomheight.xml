@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:divider="@color/divider"
         android:dividerHeight="2dp"
-        android:layout_marginBottom="56dp">
+        android:layout_marginBottom="56dp"
+        android:background="@color/divider">
     </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,9 +35,6 @@
         <activity android:name=".ui.personal.FollowListActivity"
             android:label="FollowList"
             android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".ui.personal.FollowerListActivity"
-            android:label="FollowerList"
-            android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".ui.personal.ChangeMailActivity"
             android:label="ChangeMail"
             android:parentActivityName=".ui.personal.SettingsActivity"></activity>
@@ -47,6 +44,9 @@
         <activity android:name=".ui.personal.DeleteUserActivity"
             android:label="DeleteUser"
             android:parentActivityName=".ui.personal.SettingsActivity"></activity>
+        <activity android:name=".ui.personal.WatchHomepageActivity"
+            android:label="WatchHomepage"
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

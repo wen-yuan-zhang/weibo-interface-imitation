@@ -33,6 +33,7 @@ import com.example.myapp.ui.BaseListViewUserInfoAdapter;
 import com.example.myapp.ui.message.MessagePageFragmentAdapter;
 import com.example.myapp.utils.Global;
 import com.example.myapp.utils.Utils;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
@@ -50,15 +51,14 @@ import java.util.zip.Inflater;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * 个人页面：使用PullToZoomListViewEx实现，
- * @see <a href="https://github.com/Frank-Zhu/PullZoomView"></a>
- * 整体实际上继承自一个ListView
+ * 个人页面
  */
 public class PersonalFragment extends Fragment {
 
 
     protected Handler handler = new PersonalFragment.myHandler();
 
+    int userId = -1;    //本人的id
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -87,6 +87,22 @@ public class PersonalFragment extends Fragment {
             }
         });
 
+        AppBarLayout app_bar = root.findViewById(R.id.app_bar_personal);
+
+        final int alphaMaxOffset = 400;
+        toolbar.getBackground().setAlpha(0);
+        app_bar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                // 设置 toolbar 背景
+                if (verticalOffset > -alphaMaxOffset) {
+                    toolbar.getBackground().setAlpha(255 * -verticalOffset / alphaMaxOffset);
+                } else {
+                    toolbar.getBackground().setAlpha(255);
+                }
+            }
+        });
+
         //加载ViewPager
         ViewPager viewPager = root.findViewById(R.id.personal_viewPager);
         viewPager.setAdapter(new PersonalPageFragmentAdapter(getChildFragmentManager()));
@@ -102,8 +118,8 @@ public class PersonalFragment extends Fragment {
         //点击文字和数字都可以触发
         root.findViewById(R.id.tv_follow).setOnClickListener(new FollowListListener());
         root.findViewById(R.id.tv_followNum).setOnClickListener(new FollowListListener());
-        root.findViewById(R.id.tv_follower).setOnClickListener(new FollowerListListener());
-        root.findViewById(R.id.tv_followerNum).setOnClickListener(new FollowerListListener());
+        root.findViewById(R.id.tv_follower).setOnClickListener(new FollowListListener());
+        root.findViewById(R.id.tv_followerNum).setOnClickListener(new FollowListListener());
 
         //开启一个线程获得头部信息
         new Thread(new Runnable() {
@@ -129,6 +145,7 @@ public class PersonalFragment extends Fragment {
                         String signature = jsonInfo.getString("signature");
                         int followNum = jsonInfo.getInt("followingCount");
                         int followerNum = jsonInfo.getInt("followerCount");
+                        userId = jsonInfo.getInt("id");
                         //在个人信息都获取到后，通知UI线程更新一次界面
                         //这次更新界面只会更新文字信息，头像签名由父界面负责更新
                         Message message = new Message();
@@ -162,17 +179,12 @@ public class PersonalFragment extends Fragment {
         @Override
         public void onClick(View v) {
             //TODO
+            //如果userId=-1，说明还没加载完，还没从服务器返回id结果
+            if(userId == -1)
+                return;
             Intent intent = new Intent(getActivity(), FollowListActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    class FollowerListListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            //TODO
-            Intent intent = new Intent(getActivity(), FollowerListActivity.class);
+            intent.putExtra("id", userId);
+            intent.putExtra("isMe", true);
             startActivity(intent);
         }
     }
@@ -221,17 +233,7 @@ public class PersonalFragment extends Fragment {
                                     //读取服务器返回流里的数据，把数据写入到本地，缓冲起来
                                     cacheFile.createNewFile();
                                     FileOutputStream fos = new FileOutputStream(cacheFile);
-                                    //加一个共享锁
-                                    while (true) {
-                                        try {
-                                            fos.getChannel().tryLock(0, Long.MAX_VALUE, true);
-                                            break;
-                                        } catch (Exception e) {
-                                            Utils.showToastInCenter(getContext(), "检测到读写冲突", Utils.TOAST_THREAD_QUEUE);
-                                            //隔半秒再试
-                                            Thread.sleep(500);
-                                        }
-                                    }
+
                                     byte[] b = new byte[1024];
                                     int len = 0;
                                     while ((len = is.read(b)) != -1) {

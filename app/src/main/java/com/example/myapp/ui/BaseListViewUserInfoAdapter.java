@@ -15,13 +15,10 @@ import com.example.myapp.objects.UserInfo;
 
 import java.util.ArrayList;
 
-public class BaseListViewUserInfoAdapter extends BaseAdapter {
+//userInfo的适配器，显示user的名字、兴趣、经历等，可以被personal的两个界面继承
+public class BaseListViewUserInfoAdapter extends BaseListViewAdapter {
 
-    LayoutInflater mInflater;
     ArrayList<UserInfo> userInfos;
-
-    protected Handler handler = new BaseListViewUserInfoAdapter.myHandler();
-
 
     public BaseListViewUserInfoAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
@@ -70,18 +67,18 @@ public class BaseListViewUserInfoAdapter extends BaseAdapter {
         return view;
     }
 
-    class myHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            Bundle data = msg.getData();
-            String notifyAll = data.getString("notifyAll");
-            if(notifyAll.equals("ok")) {
-//                loadingView.dismiss();
-                notifyDataSetChanged();
-            }
-        }
-    }
+//    class myHandler extends Handler {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            Bundle data = msg.getData();
+//            String notifyAll = data.getString("notifyAll");
+//            if(notifyAll.equals("ok")) {
+////                loadingView.dismiss();
+//                notifyDataSetChanged();
+//            }
+//        }
+//    }
 
     public void setData(UserInfo userInfo) {
         userInfos.add(userInfo);

@@ -3,9 +3,12 @@ package com.example.myapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -27,11 +30,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,12 +76,51 @@ public class MainActivity extends AppCompatActivity {
     private void globalInit() {
         //创建缓存文件夹
         File cacheDir = getApplicationContext().getCacheDir();
-        if(!cacheDir.exists()) {
+        if (!cacheDir.exists()) {
             boolean result = cacheDir.mkdirs();
-            if(!result) {
+            if (!result) {
                 System.out.println("创建缓存文件夹失败！");
             }
         }
+
+        //把默认图片下载下来：只有这张图片可能产生写冲突，提前写下来
+        File cacheFile = new File(cacheDir, Global.defaultImg);
+        if (!cacheFile.exists()) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        HttpURLConnection conn;
+                        conn = (HttpURLConnection) new URL(Global.server_addr_static_profile + Global.defaultImg).openConnection();
+                        conn.setRequestMethod("GET");
+                        conn.connect();
+                        int responseCode = conn.getResponseCode();
+                        if (responseCode == HttpURLConnection.HTTP_OK) {
+                            //获取服务器响应头中的流
+                            InputStream is = conn.getInputStream();
+
+                            //读取服务器返回流里的数据，把数据写入到本地，缓冲起来
+                            cacheFile.createNewFile();
+                            FileOutputStream fos = new FileOutputStream(cacheFile);
+
+                            byte[] b = new byte[1024];
+                            int len = 0;
+                            while ((len = is.read(b)) != -1) {
+                                fos.write(b, 0, len);
+                            }
+                            fos.close();
+                            is.close();
+                        } else {
+                            throw new Exception("HTTP request return not 200");
+                        }
+                    } catch (Exception e) {
+                        Utils.showToastInCenter(getApplicationContext(), e.toString(), Utils.TOAST_THREAD_QUEUE);
+                    }
+                }
+            }).start();
+
+        }
+
     }
 
     //加载主页面

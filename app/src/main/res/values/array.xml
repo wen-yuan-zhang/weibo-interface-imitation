@@ -6,17 +6,23 @@
     </string-array>
 
     <string-array name="search_blog_identity">
-        <item>老师</item>
-        <item>学生</item>
         <item>不限</item>
+        <item>教师</item>
+        <item>学生</item>
     </string-array>
 
     <string-array name="search_blog_time">
+        <item>不限</item>
         <item>一个月内</item>
         <item>三个月内</item>
         <item>六个月内</item>
         <item>一年内</item>
+    </string-array>
+
+    <string-array name="search_sex">
         <item>不限</item>
+        <item>男</item>
+        <item>女</item>
     </string-array>
 
 

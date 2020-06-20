@@ -22,10 +22,10 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
             android:text="条件筛选"
-            android:textSize="24dp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,10 +33,9 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginStart="24dp"
             android:text="筛选你感兴趣的帖子和用户"
-            android:textSize="16dp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView1"
             app:layout_constraintStart_toEndOf="@+id/textView1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -54,21 +53,21 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="76dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="12dp"
             android:text="搜索范围"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/discover_search_rangeSpinner"
-            android:layout_width="wrap_content"
+            android:layout_width="128dp"
             android:layout_height="24dp"
-            android:layout_marginStart="40dp"
             android:layout_marginTop="2dp"
+            android:layout_marginEnd="80dp"
             android:entries="@array/search_range"
-            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -79,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@color/white"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
         tools:layout_editor_absoluteX="1dp">
 
@@ -90,23 +89,23 @@
             android:layout_marginStart="64dp"
             android:layout_marginTop="12dp"
             android:text="发帖者身份"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/discover_search_blog_identity"
-            android:layout_width="150dp"
+            android:layout_width="128dp"
             android:layout_height="24dp"
-            android:layout_marginStart="40dp"
             android:layout_marginTop="2dp"
+            android:layout_marginEnd="80dp"
             android:entries="@array/search_blog_identity"
-            app:layout_constraintStart_toEndOf="@+id/textView10"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView10" />
 
         <Spinner
             android:id="@+id/discover_search_blog_time"
-            android:layout_width="150dp"
+            android:layout_width="128dp"
             android:layout_height="24dp"
             android:layout_marginTop="2dp"
             android:entries="@array/search_blog_time"
@@ -119,7 +118,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="12dp"
             android:text="发帖者学校"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/textView10"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -130,20 +129,21 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:text="发帖时间"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView11"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
         <EditText
             android:id="@+id/discover_search_blog_school"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="30dp"
             android:background="#0000"
             android:ems="10"
             android:hint="清华大学"
             android:inputType="text"
-            android:textSize="16sp"
+            android:paddingLeft="8dp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/discover_search_blog_identity"
             app:layout_constraintTop_toTopOf="@+id/textView11" />
 
@@ -155,7 +155,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@color/white"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
@@ -167,38 +167,19 @@
             android:layout_marginStart="64dp"
             android:layout_marginTop="12dp"
             android:text="身份"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/discover_search_user_identity"
-            android:layout_width="150dp"
+            android:layout_width="128dp"
             android:layout_height="24dp"
-            android:layout_marginStart="56dp"
             android:layout_marginTop="2dp"
+            android:layout_marginEnd="80dp"
             android:entries="@array/search_blog_identity"
-            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView13" />
-
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginTop="12dp"
-            android:text="性别"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/textView13"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-        <Spinner
-            android:id="@+id/discover_search_user_sex"
-            android:layout_width="150dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="2dp"
-            android:entries="@array/search_blog_time"
-            app:layout_constraintStart_toStartOf="@+id/discover_search_user_identity"
-            app:layout_constraintTop_toTopOf="@+id/textView14" />
 
         <TextView
             android:id="@+id/textView15"
@@ -206,20 +187,21 @@
             android:layout_height="30dp"
             android:layout_marginTop="12dp"
             android:text="学校"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         <EditText
             android:id="@+id/discover_search_user_school"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="30dp"
             android:background="#0000"
             android:ems="10"
             android:hint="清华大学"
             android:inputType="text"
+            android:paddingLeft="8dp"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/discover_search_user_sex"
+            app:layout_constraintStart_toStartOf="@+id/discover_search_user_identity"
             app:layout_constraintTop_toTopOf="@+id/textView15" />
 
         <TextView
@@ -228,18 +210,19 @@
             android:layout_height="30dp"
             android:layout_marginTop="12dp"
             android:text="院系"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/textView15"
             app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
         <EditText
             android:id="@+id/discover_search_user_department"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="30dp"
             android:background="#0000"
             android:ems="10"
             android:hint="软件学院"
             android:inputType="text"
+            android:paddingLeft="8dp"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/discover_search_user_school"
             app:layout_constraintTop_toTopOf="@+id/textView16" />
@@ -251,19 +234,20 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:text="研究方向"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView16"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         <EditText
             android:id="@+id/discover_search_user_interest"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="30dp"
             android:background="#0000"
             android:ems="10"
             android:hint="图像识别"
             android:inputType="text"
+            android:paddingLeft="8dp"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/discover_search_user_department"
             app:layout_constraintTop_toTopOf="@+id/textView17" />

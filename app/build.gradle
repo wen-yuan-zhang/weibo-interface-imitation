@@ -10,7 +10,8 @@ android {
     defaultConfig {
         applicationId "com.example.myapp"
         //如果16的话，上传图片插件用不了
-        minSdkVersion 19
+        //如果19的话，join用不了
+        minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -61,6 +62,8 @@ dependencies {
     implementation 'com.github.arimorty:floatingsearchview:2.1.1'
     //猫咪loading
 //    implementation 'com.roger.catloadinglibrary:catloadinglibrary:1.0.5'
+    //websocket
+    implementation "org.java-websocket:Java-WebSocket:1.4.0"
     //dependencies
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
     implementation 'com.jpardogo.materialtabstrip:library:1.1.0'

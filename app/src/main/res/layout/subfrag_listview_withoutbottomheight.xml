@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight="2dp"
-        android:divider="@color/divider">
+        android:divider="@color/divider"
+        android:background="@color/divider">
 
     </ListView>
 

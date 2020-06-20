@@ -8,7 +8,7 @@
     android:background="@color/white">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/chat_header_image"
+        android:id="@+id/header_image"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
@@ -28,13 +28,14 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/chat_header_image"
-        app:layout_constraintTop_toTopOf="@+id/chat_header_image">
+        app:layout_constraintStart_toEndOf="@+id/header_image"
+        app:layout_constraintTop_toTopOf="@+id/header_image">
 
         <TextView
-            android:id="@+id/tv_chat_username"
+            android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="USERNAME"
             android:textColor="@color/text_emphasize"
             android:textSize="16sp"
@@ -47,34 +48,22 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginLeft="2dp"
-            android:text="发布了新动态"
+            android:text="关注了你"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/tv_chat_username"
-            app:layout_constraintTop_toTopOf="@+id/tv_chat_username" />
-
-        <TextView
-            android:id="@+id/tv_notification_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="TextView"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_chat_username"
-            app:layout_constraintTop_toBottomOf="@+id/tv_chat_username" />
+            app:layout_constraintStart_toEndOf="@+id/tv_username"
+            app:layout_constraintTop_toTopOf="@+id/tv_username" />
 
         <TextView
             android:id="@+id/tv_notification_deliverTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="22dp"
             android:text="2020-01-01"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/layout_subConstraintLayout"
-            app:layout_constraintStart_toStartOf="@+id/tv_notification_content"
-            app:layout_constraintTop_toBottomOf="@+id/tv_notification_content" />
+            app:layout_constraintStart_toStartOf="@+id/tv_username"
+            app:layout_constraintTop_toBottomOf="@+id/tv_username" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,6 +37,10 @@ public class SubfragmentSearch extends Fragment {
                     layout_user.setVisibility(View.VISIBLE);
                     layout_blog.setVisibility(View.INVISIBLE);
                 }
+                else if(selectedText.equals("不限")) {
+                    layout_user.setVisibility(View.INVISIBLE);
+                    layout_blog.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override

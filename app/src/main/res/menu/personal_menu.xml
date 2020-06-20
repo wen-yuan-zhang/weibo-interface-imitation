@@ -5,10 +5,10 @@
         android:id="@+id/option_editInfo"
         android:title="@string/personal_option_edit"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/img_btn_edit"/>
+        android:icon="@drawable/img_btn_edit_black"/>
     <item
         android:id="@+id/option_settings"
         android:title="@string/personal_option_setting"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/img_btn_setting"/>
+        android:icon="@drawable/img_btn_setting_black"/>
 </menu>

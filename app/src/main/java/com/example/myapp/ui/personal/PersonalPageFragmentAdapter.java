@@ -30,6 +30,18 @@ public class PersonalPageFragmentAdapter extends FragmentPagerAdapter {
         fragmentTitles.add("历史");
     }
 
+    public PersonalPageFragmentAdapter(@NonNull FragmentManager fm, int userId) {
+        super(fm);
+        fragments = new ArrayList<>();
+        fragments.add(new SubfragmentPersonalHomepage(userId));
+        fragments.add(new SubfragmentPersonalhistory(userId));
+
+        //需要跟tabLayout同步更改
+        fragmentTitles = new ArrayList<>();
+        fragmentTitles.add("主页");
+        fragmentTitles.add("历史");
+    }
+
     @NonNull
     @Override
     public Fragment getItem(int position) {

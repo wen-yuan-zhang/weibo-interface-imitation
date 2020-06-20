@@ -57,6 +57,7 @@ public class DeliverActivity extends AppCompatActivity {
     private GridImageAdapter adapter;
     private RecyclerView mRecyclerView;
     private PopupWindow pop;
+    private EditText editText;
 
     CatLoadingView loadingView = new CatLoadingView();
 
@@ -77,6 +78,7 @@ public class DeliverActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         mRecyclerView = findViewById(R.id.deliver_recycler_img);
+        editText = findViewById(R.id.deliver_editText_content);
 
         //点击取消：返回上一个activity
         findViewById(R.id.deliver_btn_return).setOnClickListener(new View.OnClickListener() {
@@ -95,8 +97,8 @@ public class DeliverActivity extends AppCompatActivity {
             }
         });
 
-        //猫咪loading不能点击取消，只能认为取消
-        loadingView.setClickCancelAble(false);
+        //猫咪loading不能点击取消，只能人为取消
+        loadingView.setCancelable(false);
 
         //初始化上传图片区域
         initImageWidget();
@@ -168,8 +170,7 @@ public class DeliverActivity extends AppCompatActivity {
                     mHandler.sendMessage(msg);
                 }
             }
-        //TODO
-        });
+        }).start();
 
     }
 
@@ -211,6 +212,8 @@ public class DeliverActivity extends AppCompatActivity {
 
         @Override
         public void onAddPicClick() {
+            //点击加号时，取消editText的焦点，软键盘落下
+            editText.clearFocus();
             showPop();
         }
     };
@@ -379,13 +382,18 @@ public class DeliverActivity extends AppCompatActivity {
             Bundle data = msg.getData();
             String result = data.getString("result");
             if(result.equals("ok")) {
-//                loadingView.dismiss();
+                loadingView.dismiss();
                 Utils.showToastInCenter(getApplicationContext(), "发布成功！", Utils.TOAST_UI_QUEUE);
+                try {
+                    Thread.sleep(200);
+                } catch (Exception e) {
+
+                }
                 finish();
             }
             else {
-                String error = data.getString("error", "遇到未知错误！");
-//                loadingView.dismiss();
+                String error = data.getString("log", "发布失败！");
+                loadingView.dismiss();
                 Utils.showToastInCenter(getApplicationContext(), error, Utils.TOAST_UI_QUEUE);
             }
         }

@@ -10,8 +10,7 @@
         android:id="@+id/blog_header_image"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/img_default_header"
         app:civ_border_color="#FF000000"
@@ -23,8 +22,7 @@
         android:id="@+id/tv_blog_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="4dp"
         android:text="USERNAME"
         android:textSize="18sp"
@@ -58,8 +56,9 @@
             android:id="@id/expandable_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="8dp"
             android:textColor="#666666"
             android:textSize="16sp" />
 
@@ -69,7 +68,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right|bottom"
             android:background="@android:color/transparent"
-            android:padding="16dp" />
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp" />
     </com.ms.square.android.expandabletextview.ExpandableTextView>
 
     <GridLayout
@@ -91,8 +93,10 @@
             android:tag="img1"
             android:layout_columnWeight="1"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/img_default_header" />
 
         <ImageView
@@ -100,10 +104,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:tag="img2"
             android:visibility="visible"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/img_default_header" />
 
         <ImageView
@@ -111,11 +118,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
             android:tag="img3"
             android:visibility="visible"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/img_default_header" />
 
         <ImageView
@@ -126,8 +135,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp"
             android:tag="img4"
             android:visibility="visible"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/img_default_header" />
 
         <ImageView
@@ -137,8 +148,11 @@
             android:layout_columnWeight="1"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:tag="img5"
             android:visibility="visible"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/img_default_header" />
 
         <ImageView
@@ -149,8 +163,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
             android:tag="img6"
             android:visibility="visible"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/img_default_header" />
     </GridLayout>
 

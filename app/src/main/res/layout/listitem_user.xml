@@ -25,7 +25,7 @@
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
         app:layout_constraintStart_toEndOf="@+id/user_header_image"
         app:layout_constraintTop_toTopOf="@+id/user_header_image">
 
@@ -34,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="辉夜大小姐"
+            android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/layout_subConstraintLayout"
             app:layout_constraintTop_toTopOf="@+id/layout_subConstraintLayout" />
@@ -42,7 +43,7 @@
             android:id="@+id/user_signature"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="20dp"
             android:ellipsize="end"
             android:maxLines="1"

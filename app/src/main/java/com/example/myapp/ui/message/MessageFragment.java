@@ -30,6 +30,8 @@ public class MessageFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("消息"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
 
+
+
         //加载ViewPager
         final ViewPager viewPager = root.findViewById(R.id.viewpager_discover);
         PagerAdapter adapter = new MessagePageFragmentAdapter(getChildFragmentManager());
