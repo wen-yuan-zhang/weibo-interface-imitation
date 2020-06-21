@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/img_default_header"
+        android:src="@drawable/img_default_header2"
         app:civ_border_color="#FF000000"
         app:civ_border_width="1dp"
         app:layout_constraintStart_toStartOf="parent"

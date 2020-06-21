@@ -5,20 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/divider">
+    android:background="@color/background">
 <!--  用户信息只用这一个item显示出来  -->
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:text="基本资料"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        android:textStyle="normal"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="47dp" />
 
@@ -61,7 +62,6 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout1"
         tools:layout_editor_absoluteX="0dp">
@@ -96,7 +96,6 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/constraintLayout2">
 
@@ -130,7 +129,6 @@
         android:id="@+id/settings_layout_changeMail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
@@ -164,7 +162,6 @@
         android:id="@+id/constraintLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/settings_layout_changeMail">
 
@@ -198,7 +195,6 @@
         android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
         tools:layout_editor_absoluteX="-30dp">
@@ -233,7 +229,6 @@
         android:id="@+id/constraintLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
         tools:layout_editor_absoluteX="0dp">
@@ -267,14 +262,15 @@
     <TextView
         android:id="@+id/textView9"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:text="其他信息"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        android:textStyle="normal"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout7"
         tools:layout_editor_absoluteX="47dp" />
 

@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.ApplicationInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
@@ -21,22 +23,34 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapp.ui.chat.adapter.Adapter_ChatMessage;
+import com.example.myapp.ui.chat.database.SQLiteDB;
 import com.example.myapp.ui.chat.im.JWebSocketClient;
 import com.example.myapp.ui.chat.im.JWebSocketClientService;
 import com.example.myapp.ui.chat.modle.ChatMessage;
 import com.example.myapp.ui.chat.util.Util;
 import com.example.myapp.R;
+import com.example.myapp.utils.Global;
 
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
@@ -50,6 +64,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private List<ChatMessage> chatMessageList = new ArrayList<>();//消息列表
     private Adapter_ChatMessage adapter_chatMessage;
     private ChatMessageReceiver chatMessageReceiver;
+
+    private SQLiteDB db = Global.db;
+    int targetId = -1;  //对方的userId
+    String nickName = "";   //对方的nickName
+    String profileHim = "";    //对方的头像
+    String profileMe = "";     //我的头像
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -70,23 +90,32 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            String message=intent.getStringExtra("message");
             ChatMessage chatMessage=new ChatMessage();
+//            String message=intent.getStringExtra("message");
+            String message = intent.getStringExtra("message");
+            int fromId = intent.getIntExtra("fromId", -1);
             chatMessage.setContent(message);
             chatMessage.setIsMeSend(0);
             chatMessage.setIsRead(1);
             chatMessage.setTime(System.currentTimeMillis()+"");
             chatMessageList.add(chatMessage);
             initChatMsgListView();
+
+            //插入数据库
+            db.addChat(1,fromId,System.currentTimeMillis(),message);
         }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        setContentView(R.layout.activity_main);
-        mContext= com.example.myapp.ui.chat.ChatActivity.this;
+        setContentView(R.layout.activity_chat);
+
+        targetId = getIntent().getIntExtra("targetId", -1);
+        nickName = getIntent().getStringExtra("nickName");
+        profileHim = getIntent().getStringExtra("profileHim");
+
+        mContext= this;
         //启动服务
         startJWebSClientService();
         //绑定服务
@@ -97,6 +126,22 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         checkNotification(mContext);
         findViewById();
         initView();
+        initHistoryChat();
+    }
+
+    //初始化历史聊天记录：从数据库拉取所有的聊天记录
+    private void initHistoryChat() {
+        List<Map<String, Object>> chatList = Global.db.fetchChat(targetId,null,0,1000);
+        //时间从 以前 往 现在 遍历
+        for(int i = chatList.size()-1; i >= 0; i--) {
+            ChatMessage message = new ChatMessage();
+            Map<String, Object> chat = chatList.get(i);
+            message.setContent((String)chat.get("message"));
+            message.setIsMeSend(1-(int)chat.get("isRcv"));
+            message.setTime(String.valueOf((Long)chat.get("createTime")));
+            chatMessageList.add(message);
+        }
+        initChatMsgListView();
     }
 
     /**
@@ -127,9 +172,17 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         listView = findViewById(R.id.chatmsg_listView);
         btn_send = findViewById(R.id.btn_send);
         et_content = findViewById(R.id.et_content);
+
         btn_send.setOnClickListener(this);
     }
     private void initView() {
+        //设置顶部显示昵称
+        ((TextView) findViewById(R.id.tv_groupOrContactName)).setText(nickName);
+        //返回事件
+        ((ImageView) findViewById(R.id.iv_return)).setOnClickListener(v -> finish());
+        //TODO: 如果点击输入框以外的区域，把键盘落下
+
+
         //监听输入框的变化
         et_content.addTextChangedListener(new TextWatcher() {
             @Override
@@ -159,12 +212,20 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_send:
                 String content = et_content.getText().toString();
                 if (content.length() <= 0) {
-                    Util.showToast(mContext, "消息不能为空哟");
+                    Util.showToast(mContext, "消息不能为空");
                     return;
                 }
 
                 if (client != null && client.isOpen()) {
-                    jWebSClientService.sendMsg(content);
+                    //编辑消息格式并发送
+                    try {
+                        JSONObject json = new JSONObject();
+                        json.put("toId", targetId);
+                        json.put("message", content);
+                        jWebSClientService.sendMsg(json.toString());
+                    } catch (Exception e) {
+                        Util.showToast(mContext, e.toString());
+                    }
 
                     //暂时将发送的消息加入消息列表，实际以发送成功为准（也就是服务器返回你发的消息时）
                     ChatMessage chatMessage=new ChatMessage();
@@ -175,6 +236,10 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     chatMessageList.add(chatMessage);
                     initChatMsgListView();
                     et_content.setText("");
+
+                    //消息插入数据库
+                    db.addChat(0,targetId,System.currentTimeMillis(),content);
+
                 } else {
                     Util.showToast(mContext, "连接已断开，请稍等或重启App哟");
                 }
@@ -184,8 +249,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    //该函数用来刷新界面
     private void initChatMsgListView(){
-        adapter_chatMessage = new Adapter_ChatMessage(mContext, chatMessageList);
+        adapter_chatMessage = new Adapter_ChatMessage(mContext, chatMessageList, profileHim);
         listView.setAdapter(adapter_chatMessage);
         listView.setSelection(chatMessageList.size());
     }

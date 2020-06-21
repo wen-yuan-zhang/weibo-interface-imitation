@@ -16,8 +16,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.myapp.MainActivity;
 import com.example.myapp.R;
+import com.example.myapp.ui.chat.ChatActivity;
 import com.example.myapp.utils.Global;
 import com.example.myapp.utils.Utils;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONObject;
@@ -39,6 +41,8 @@ public class WatchHomepageActivity extends AppCompatActivity {
 
     protected Handler handler = new myHandler();
     int userId = -1;    //当前是哪个人的主界面
+    String nickName = "辉夜大小姐"; //这个名字在子线程获取到之后，用于传给ChatActivity
+    String profile = Global.defaultImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,37 @@ public class WatchHomepageActivity extends AppCompatActivity {
         //返回按钮
         findViewById(R.id.btn_return).setOnClickListener(v -> finish());
 
+        //点击跳转到聊天界面
+        findViewById(R.id.btn_chat).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WatchHomepageActivity.this, ChatActivity.class);
+                intent.putExtra("targetId", userId);
+                intent.putExtra("nickName", nickName);
+                intent.putExtra("profileHim", profile);
+                startActivity(intent);
+            }
+        });
+
+        //设置渐变
+        AppBarLayout app_bar = findViewById(R.id.app_bar_personal);
+        final int alphaMaxOffset = 400;
+        Toolbar toolbar = findViewById(R.id.personal_toolbar);
+        toolbar.getBackground().setAlpha(0);
+        app_bar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                // 设置 toolbar 背景
+                if (verticalOffset > -alphaMaxOffset) {
+                    toolbar.getBackground().setAlpha(255 * -verticalOffset / alphaMaxOffset);
+                } else {
+                    toolbar.getBackground().setAlpha(255);
+                }
+            }
+        });
+
+
+
         //开启一个线程获得头部信息
         new Thread(new Runnable() {
             @Override
@@ -88,11 +123,8 @@ public class WatchHomepageActivity extends AppCompatActivity {
                             throw new Exception(jsonObject.getString("msg"));
                         }
                         JSONObject jsonInfo = jsonObject.getJSONObject("info");
-                        String nickName = jsonInfo.getString("nickName");
-                        String profile = jsonInfo.getString("profile");
-                        String signature = jsonInfo.getString("signature");
-                        int followNum = jsonInfo.getInt("followingCount");
-                        int followerNum = jsonInfo.getInt("followerCount");
+                        nickName = jsonInfo.getString("nickName");
+                        profile = jsonInfo.getString("profile");
                         //在个人信息都获取到后，通知UI线程更新一次界面
                         //这次更新界面只会更新文字信息，头像签名由父界面负责更新
                         Message message = new Message();

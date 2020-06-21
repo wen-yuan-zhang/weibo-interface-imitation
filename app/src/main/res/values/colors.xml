@@ -5,11 +5,12 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="white">#FFFFFF</color>
 <!--  工具栏背景色  -->
-    <color name="toolbarBg">#DCDCDC</color>
+    <color name="toolbarBg">#F0F0F0</color>
 <!--    <color name="toolbarBg">#F5F5F5</color>-->
-
 <!--  分割线  -->
-    <color name="divider">#D3D3D3</color>
+    <color name="divider">#DCDCDC</color>
+<!--  普通背景色  -->
+    <color name="background">#E6E6E6</color>
 <!--  主题色  -->
     <color name="theme_orange">#FF8C00</color>
 <!--  强调色  -->

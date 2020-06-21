@@ -45,7 +45,7 @@
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_marginRight">8dp</item>
         <item name="android:src">@drawable/contact_head_icon</item>
-        <item name="android:scaleType">fitXY</item>
+<!--        <item name="android:scaleType">fitXY</item>-->
     </style>
     <style name="jmui_msg_text_style">
         <item name="android:maxWidth">225dp</item>
@@ -70,7 +70,7 @@
         <item name="android:layout_alignParentLeft">true</item>
         <item name="android:layout_marginLeft">8dp</item>
         <item name="android:src">@drawable/contact_head_icon</item>
-        <item name="android:scaleType">fitXY</item>
+<!--        <item name="android:scaleType">fitXY</item>-->
     </style>
     <style name="jmui_chat_display_name_style">
         <item name="android:ems">5</item>

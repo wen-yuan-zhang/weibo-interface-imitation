@@ -66,13 +66,13 @@ public class SQLiteDB {
     }
 
     // 查询聊天记录
-    public ArrayList<Map<String, Object>> fetchChat(int targetId, Long startTime, int start, int count) {
+    public List<Map<String, Object>> fetchChat(int targetId, Long startTime, int start, int count) {
         if (db != null && db.isOpen()) {
             if (startTime == null) startTime = System.currentTimeMillis();
             Cursor cursor = db.query("Chat", new String[]{"isRcv", "createTime", "message"},
                     "targetId = ? and createTime < ?", new String[]{String.valueOf(targetId), String.valueOf(startTime)},
-                    null, null, "createTime desc", start + "," + count);
-            ArrayList<Map<String, Object>> result = new ArrayList<>();
+                    null, null, "id desc", start + "," + count);
+            List<Map<String, Object>> result = new ArrayList<>();
             while (cursor.moveToNext()) {
                 Map<String, Object> map = new HashMap<>();
                 int isRcv = cursor.getInt(cursor.getColumnIndex("isRcv"));
@@ -84,20 +84,35 @@ public class SQLiteDB {
                 result.add(map);
             }
             cursor.close();
+//            for(Map<String, Object> r: result){
+//                System.out.println(r.toString());
+//            }
             return result;
         }
         return new ArrayList<>();
     }
 
-
-//    public void addNewChat(int targetId, Long createTime) {
-//        if (db != null && db.isOpen()) {
-//            ContentValues cv = new ContentValues();
-//            cv.put("targetId", targetId);
-//            if (createTime != null) cv.put("createTime", createTime);
-//            db.insert("NewChat", null, cv);
-//        }
-//    }
+    // 返回一个 List 按照最后交流的时间顺序，越靠近现在的排名越前
+    public List<Map<String, Object>> fetchUser() {
+        if (db != null && db.isOpen()) {
+            Cursor cursor = db.rawQuery("SELECT targetId, MAX(createTime) as maxTime FROM Chat GROUP BY targetId ORDER BY maxTime DESC", new String[]{});
+            List<Map<String, Object>> result = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                Map<String, Object> map = new HashMap<>();
+                int targetId = cursor.getInt(cursor.getColumnIndex("targetId"));
+                long maxTime = cursor.getLong(cursor.getColumnIndex("maxTime"));
+                map.put("targetId", targetId);
+                map.put("maxTime", maxTime);
+                result.add(map);
+            }
+            cursor.close();
+//            for(Map<String, Object> r : result){
+//                System.out.println(r.toString());
+//            }
+            return result;
+        }
+        return new ArrayList<>();
+    }
 
 
 }

@@ -87,8 +87,8 @@ public class PersonalFragment extends Fragment {
             }
         });
 
+        //设置渐变
         AppBarLayout app_bar = root.findViewById(R.id.app_bar_personal);
-
         final int alphaMaxOffset = 400;
         toolbar.getBackground().setAlpha(0);
         app_bar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {

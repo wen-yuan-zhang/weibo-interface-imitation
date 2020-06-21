@@ -12,7 +12,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="22dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/img_default_header"
+        android:src="@drawable/img_default_header2"
         app:civ_border_color="#FF000000"
         app:civ_border_width="1dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
             android:background="@android:color/transparent"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:paddingTop="4dp"
+            android:paddingTop="0dp"
             android:paddingBottom="4dp" />
     </com.ms.square.android.expandabletextview.ExpandableTextView>
 
@@ -93,39 +93,39 @@
             android:tag="img1"
             android:layout_columnWeight="1"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/img_default_header" />
+            app:srcCompat="@drawable/img_default_content" />
 
         <ImageView
             android:id="@+id/blog_image2"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:tag="img2"
             android:visibility="visible"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/img_default_header" />
+            app:srcCompat="@drawable/img_default_content" />
 
         <ImageView
             android:id="@+id/blog_image3"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
             android:tag="img3"
             android:visibility="visible"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/img_default_header" />
+            app:srcCompat="@drawable/img_default_content" />
 
         <ImageView
             android:id="@+id/blog_image4"
@@ -139,7 +139,7 @@
             android:tag="img4"
             android:visibility="visible"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/img_default_header" />
+            app:srcCompat="@drawable/img_default_content" />
 
         <ImageView
             android:id="@+id/blog_image5"
@@ -153,7 +153,7 @@
             android:tag="img5"
             android:visibility="visible"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/img_default_header" />
+            app:srcCompat="@drawable/img_default_content" />
 
         <ImageView
             android:id="@+id/blog_image6"
@@ -167,7 +167,7 @@
             android:tag="img6"
             android:visibility="visible"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/img_default_header" />
+            app:srcCompat="@drawable/img_default_content" />
     </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

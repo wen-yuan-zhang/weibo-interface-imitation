@@ -1,6 +1,8 @@
 package com.example.myapp.ui.chat.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,19 +13,25 @@ import android.widget.TextView;
 
 import com.example.myapp.R;
 import com.example.myapp.ui.chat.modle.ChatMessage;
+import com.example.myapp.utils.Global;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Adapter_ChatMessage extends BaseAdapter {
     List<ChatMessage> mChatMessageList;
     LayoutInflater inflater;
     Context context;
+    String profileHim = "";
 
-    public Adapter_ChatMessage(Context context, List<ChatMessage> list) {
+    public Adapter_ChatMessage(Context context, List<ChatMessage> list, String profileHim) {
         this.mChatMessageList = list;
         this.context = context;
+        this.profileHim = profileHim;
         inflater = LayoutInflater.from(context);
     }
 
@@ -87,9 +95,20 @@ public class Adapter_ChatMessage extends BaseAdapter {
         holder.tv_sendtime.setText(time);
         holder.tv_content.setVisibility(View.VISIBLE);
         holder.tv_content.setText(content);
+        //设置头像
+        File cacheDir = view.getContext().getApplicationContext().getCacheDir();
+        File cacheFile1 = new File(cacheDir, profileHim);
+        if (cacheFile1.exists()) {
+            Bitmap bm = BitmapFactory.decodeFile(cacheFile1.getAbsolutePath());
+            ((CircleImageView) view.findViewById(R.id.jmui_avatar_iv)).setImageBitmap(bm);
+        }
+        File cacheFile2 = new File(cacheDir, Global.myProfile);
+        if (cacheFile2.exists()) {
+            Bitmap bm = BitmapFactory.decodeFile(cacheFile2.getAbsolutePath());
+            ((CircleImageView) view.findViewById(R.id.jmui_avatar_iv)).setImageBitmap(bm);
+        }
 
-
-        //如果是自己发送才显示未读已读
+            //如果是自己发送才显示未读已读
         if (isMeSend == 1) {
             if (isRead == 0) {
                 holder.tv_isRead.setText("未读");
@@ -102,7 +121,7 @@ public class Adapter_ChatMessage extends BaseAdapter {
             }
         }else{
             holder.tv_display_name.setVisibility(View.VISIBLE);
-            holder.tv_display_name.setText("服务器");
+            holder.tv_display_name.setText(mChatMessage.getNickName());
         }
 
         return view;

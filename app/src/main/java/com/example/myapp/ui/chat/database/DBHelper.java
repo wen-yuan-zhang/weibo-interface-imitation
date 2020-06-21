@@ -14,18 +14,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String createChatTB = "" +
             "create table if not exists Chat(" +
+            "id integer primary key autoincrement,"+
             "isRcv boolean not null," +
             "targetId integer not null," +
             "createTime timestamp not null default CURRENT_TIMESTAMP," +
-            "message varchar(100) not null," +
-            "primary key (targetId, createTime));";
-
-    private static final String createNewChatTB = ""+
-            "create table if not exists NewChat("+
-            "targetId integer not null,"+
-            "createTime timestamp, " +
-            "primary key (targetId))";
-
+            "message varchar(100) not null);";
 
     public DBHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -39,7 +32,6 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(createChatTB);
-        db.execSQL(createNewChatTB);
     }
 
     @Override

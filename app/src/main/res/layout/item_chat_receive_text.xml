@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/jmui_avatar_iv"
             style="@style/jmui_chat_item_receiver_avatar_style"/>
 
@@ -29,14 +29,14 @@
                 style="@style/jmui_chat_display_name_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/jmui_avatar_iv"/>
+                android:layout_toRightOf="@id/jmui_avatar_iv"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tv_content"
                 style="@style/jmui_msg_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_display_name"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="3dp"
                 android:layout_toRightOf="@id/jmui_avatar_iv"

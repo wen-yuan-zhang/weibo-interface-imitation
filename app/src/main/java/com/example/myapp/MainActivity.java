@@ -3,15 +3,15 @@ package com.example.myapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.myapp.objects.UserInfo;
+import com.example.myapp.ui.chat.database.SQLiteDB;
 import com.example.myapp.ui.discover.DiscoverFragment;
 import com.example.myapp.ui.home.HomeFragment;
 import com.example.myapp.ui.message.MessageFragment;
@@ -28,17 +28,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.io.BufferedWriter;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         //根据sharedPreferences判断是否已经登录
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         //已经登录：渲染主界面
-        if(sharedPreferences.getBoolean("isLogin", false)) {
+        if (sharedPreferences.getBoolean("isLogin", false)) {
             //先登录
             String userEmail = sharedPreferences.getString("userEmail", "");
             String userPwd = sharedPreferences.getString("userPwd", "");
@@ -121,6 +119,38 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        //把本人的profile和id存下来，留给ChatActivity用
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String url = Global.server_addr + "/cover?sessionId=" + Global.getSessionId();
+                    HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+                    connection.setRequestMethod("GET");
+                    connection.connect();
+                    int responseCode = connection.getResponseCode();
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        InputStream inputStream = connection.getInputStream();
+                        String msg = new BufferedReader(new InputStreamReader(inputStream)).readLine();
+                        JSONObject jsonObject = new JSONObject(msg);
+                        JSONObject jsonInfo = jsonObject.getJSONObject("info");
+                        Global.myProfile = jsonInfo.getString("profile");
+                        Global.myId = jsonInfo.getInt("id");
+                    } else {
+                        InputStream inputStream = connection.getInputStream();
+                        String msg = new BufferedReader(new InputStreamReader(inputStream)).readLine();
+                        System.out.println("error!" + msg);
+                    }
+                } catch (Exception e) {
+                    Utils.showToastInCenter(getApplicationContext(), e.toString(), Utils.TOAST_THREAD_QUEUE);
+                }
+
+            }
+        }).start();
+
+
+//创建数据库
+        Global.db = SQLiteDB.getInstance(getApplicationContext());
     }
 
     //加载主页面

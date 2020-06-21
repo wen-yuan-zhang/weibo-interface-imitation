@@ -3,6 +3,7 @@ package com.example.myapp.ui.chat.modle;
 public class ChatMessage {
     private String content;
     private String time;
+    private String nickName;
     private int isMeSend;//0是对方发送 1是自己发送
     private int isRead;//是否已读（0未读 1已读）
 
@@ -36,5 +37,13 @@ public class ChatMessage {
 
     public void setIsRead(int isRead) {
         this.isRead = isRead;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 }

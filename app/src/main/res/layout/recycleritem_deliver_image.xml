@@ -18,7 +18,7 @@
             android:layout_marginStart="15dp"
             android:contentDescription="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_default_header"/>
+            android:src="@drawable/img_default_content"/>
 
         <LinearLayout
             android:id="@+id/ll_del"

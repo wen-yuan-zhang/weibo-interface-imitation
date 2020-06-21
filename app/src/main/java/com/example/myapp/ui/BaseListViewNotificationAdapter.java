@@ -26,10 +26,6 @@ public class BaseListViewNotificationAdapter extends BaseListViewAdapter {
 
     private ArrayList<Notification> notifications;
 
-    public static int FOLLOW = 1;
-    public static int FOLLOWER = 2;
-    private int followType = 1; //1关注列表，2粉丝列表
-
     public BaseListViewNotificationAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
         notifications = new ArrayList<>();
@@ -110,10 +106,6 @@ public class BaseListViewNotificationAdapter extends BaseListViewAdapter {
         data.putString("notifyAll", "ok");
         message.setData(data);
         handler.sendMessage(message);
-    }
-
-    public void setFollowType(int i) {
-        followType = i;
     }
 
 }

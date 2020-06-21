@@ -8,13 +8,12 @@
     android:background="@color/white">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/chat_header_image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:id="@+id/header_image"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
-        android:src="@drawable/img_default_header"
+        android:src="@drawable/img_default_header2"
         app:civ_border_color="#FF000000"
         app:civ_border_width="1dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,39 +24,37 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/chat_header_image"
-        app:layout_constraintTop_toTopOf="@+id/chat_header_image">
+        app:layout_constraintStart_toEndOf="@+id/header_image"
+        app:layout_constraintTop_toTopOf="@+id/header_image">
 
         <TextView
             android:id="@+id/tv_chat_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="USERNAME"
+            android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/layout_subConstraintLayout"
             app:layout_constraintTop_toTopOf="@+id/layout_subConstraintLayout" />
 
         <TextView
-            android:id="@+id/tv_notification_content"
-            android:layout_width="0dp"
+            android:id="@+id/chat_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="TextView"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_notification_deliverTime"
             app:layout_constraintStart_toStartOf="@+id/tv_chat_username"
             app:layout_constraintTop_toBottomOf="@+id/tv_chat_username" />
 
         <TextView
-            android:id="@+id/tv_notification_deliverTime"
+            android:id="@+id/chat_deliverTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
